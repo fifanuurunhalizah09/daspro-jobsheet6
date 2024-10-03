@@ -4,9 +4,9 @@ public class Pemilihan2Percobaan209 {
 
     public static void main(String[] args) {
         Scanner input09 = new Scanner(System.in);
-        String member;
-        int pilihan_menu, harga;
-        double diskon, total_bayar ;
+        String member, metode_pembayaran;
+        int pilihan_menu, jumlah_beli, harga = 0, potongan_Qris = 1000;
+        double total_bayar, diskon = 0.1;
 
         System.out.println("-------------------------");
         System.out.println("===== MENU KAFE JTI =====");
@@ -17,14 +17,16 @@ public class Pemilihan2Percobaan209 {
         System.out.println("-------------------------------------");
         
         System.out.print("Masukkan angka dari menu yang dipilih = ");
-        pilihan_menu = input09.nextInt(); 
-
-        input09.nextLine(); 
+        pilihan_menu = input09.nextInt();
+        System.out.print("Masukkan Jumlah Beli: ");
+        jumlah_beli = input09.nextInt();
         System.out.print("Apakah punya number (y/n)? ");
-        member = input09.nextLine(); 
+        member = input09.next(); 
+        System.out.println("Masukkan Metode Pembayaran (Tunai/Qris): ");
+        metode_pembayaran = input09.next();
         System.out.println("-------------------------------------");
 
-    if (member.equalsIgnoreCase("y")) {
+    if (member.equals("y")) {
         diskon = 0.10;
         System.out.println("Besar diskon = 10%");
         if (pilihan_menu == 1) {
@@ -44,11 +46,16 @@ public class Pemilihan2Percobaan209 {
             return;
         }
 
-        total_bayar = harga - (harga * diskon);
+        total_bayar = harga - (harga * diskon) * jumlah_beli;
+        System.out.println("Menu yang pilihan: " + pilihan_menu);
         System.out.println("Total bayar setelah diskon = " + total_bayar);
-    }
+    if (metode_pembayaran.equals("QRIS")) {
+            total_bayar -= 1000;
+            System.out.println("Total Bayar QRIS: " + total_bayar);
+        }
 
-    else if (member.equalsIgnoreCase("n")) {
+    } else if (member.equals("n")) {
+        System.out.println("Tidak Dapat Diskon");
         if (pilihan_menu == 1) {
             harga = 14000;
             System.out.println("Harga ricebowl = " + harga);
@@ -62,15 +69,15 @@ public class Pemilihan2Percobaan209 {
             System.out.println("Masukkan pilihan menu dengan benar");
             return;
         }
+        total_bayar = harga * jumlah_beli;
         System.out.println("Total bayar = " + harga);
 
-    } else {
-        System.out.println("Member tidak valid");
-    }
-    System.out.println("-------------------------------------");
-   
-    }
-       
+     if (metode_pembayaran.equals("QRIS")) {
+                total_bayar -= 1000;
+                System.out.println("Total Bayar QRIS: " + total_bayar);
+            }
         
+        }  
     }
+ }
 
